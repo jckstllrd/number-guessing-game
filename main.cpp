@@ -1,7 +1,10 @@
 #include <iostream>
 
-int numberGame() {
+void getResults(int secret, int guess) {}
 
+int numberGame() {
+  int secretNum;
+  int numOfGuesses;
   int levelDifficulty;
   std::cout << "Welcome to the Number Guessing Game!\n"
             << "I'm thinking of a number between 1 and 100.\n"
@@ -12,6 +15,17 @@ int numberGame() {
             << "3. Hard(3 chances)\n"
             << "\nEnter your choice: ";
   std::cin >> levelDifficulty;
+  if (levelDifficulty == 1) {
+    std::cout << "Great! You have selected the Easy difficulty level.\nLet's "
+                 "start the game!";
+    while (numOfGuesses > 0) {
+      int guess;
+      std::cout << "Enter your guess: ";
+      std::cin >> guess;
+      getResults(secretNum, guess);
+      numOfGuesses--;
+    }
+  }
   return 0;
 }
 
