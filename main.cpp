@@ -2,7 +2,21 @@
 #include <iostream>
 #include <string>
 
-void getResults(int secret, int guess) { std::cout << "not quite the results"; }
+void getResults(int secret, int guess, int guesses) {
+  std::string relativeDiff =
+      (guess == secret) ? "exact"
+                        : ((guess < secret) ? "greater than" : "less than");
+
+  if (relativeDiff == "exact") {
+    std::cout << "Congratulations! You guessed the correct number with only "
+              << guesses << " attempts left.";
+    guesses = 0;
+    exit(0);
+  } else {
+    std::cout << "Incorrect! The number is " << relativeDiff << " " << guess
+              << "\n";
+  }
+}
 
 void startLevel(int level, int secret) {
   std::string levelName =
@@ -11,12 +25,12 @@ void startLevel(int level, int secret) {
 
   std::cout << "Great! You have selected the " << levelName
             << " difficulty level.\nLet's "
-               "start the game!";
+               "start the game!\n";
   while (guesses > 0) {
     int guess;
-    std::cout << "Enter your guess: ";
+    std::cout << "\nEnter your guess: ";
     std::cin >> guess;
-    getResults(secret, guess);
+    getResults(secret, guess, guesses);
     guesses--;
   }
 }
