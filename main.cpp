@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <iostream>
+#include <random>
 #include <string>
 
 void getResults(int secret, int guess, int guesses) {
@@ -36,7 +37,10 @@ void startLevel(int level, int secret) {
 }
 
 int numberGame() {
-  int secretNum = rand() % 101;
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<> distrib(1, 100);
+  int secretNum = distrib(gen);
   std::cout << secretNum;
   int numOfGuesses;
   int levelDifficulty;
