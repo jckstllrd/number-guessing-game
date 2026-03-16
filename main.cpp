@@ -1,7 +1,25 @@
 #include <cstdlib>
 #include <iostream>
+#include <string>
 
 void getResults(int secret, int guess) { std::cout << "not quite the results"; }
+
+void startLevel(int level, int secret) {
+  std::string levelName =
+      (level == 1) ? "Easy" : ((level == 2) ? "Medium" : "Hard");
+  int guesses = (levelName == "Easy") ? 10 : ((levelName == "Medium") ? 5 : 3);
+
+  std::cout << "Great! You have selected the " << levelName
+            << " difficulty level.\nLet's "
+               "start the game!";
+  while (guesses > 0) {
+    int guess;
+    std::cout << "Enter your guess: ";
+    std::cin >> guess;
+    getResults(secret, guess);
+    guesses--;
+  }
+}
 
 int numberGame() {
   int secretNum = rand() % 101;
@@ -17,40 +35,9 @@ int numberGame() {
             << "3. Hard(3 chances)\n"
             << "\nEnter your choice: ";
   std::cin >> levelDifficulty;
-  if (levelDifficulty == 1) {
-    numOfGuesses = 10;
-    std::cout << "Great! You have selected the Easy difficulty level.\nLet's "
-                 "start the game!";
-    while (numOfGuesses > 0) {
-      int guess;
-      std::cout << "Enter your guess: ";
-      std::cin >> guess;
-      getResults(secretNum, guess);
-      numOfGuesses--;
-    }
-  } else if (levelDifficulty == 2) {
-    numOfGuesses = 5;
-    std::cout << "Great! You have selected the Medium difficulty level.\nLet's "
-                 "start the game!";
-    while (numOfGuesses > 0) {
-      int guess;
-      std::cout << "Enter your guess: ";
-      std::cin >> guess;
-      getResults(secretNum, guess);
-      numOfGuesses--;
-    }
-  } else if (levelDifficulty == 3) {
-    numOfGuesses = 3;
-    std::cout << "Great! You have selected the Hard difficulty level.\nLet's "
-                 "start the game!";
-    while (numOfGuesses > 0) {
-      int guess;
-      std::cout << "Enter your guess: ";
-      std::cin >> guess;
-      getResults(secretNum, guess);
-      numOfGuesses--;
-    }
-  }
+
+  startLevel(levelDifficulty, secretNum);
+
   return 0;
 }
 
