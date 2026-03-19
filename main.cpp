@@ -1,3 +1,4 @@
+#include <chrono>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
@@ -61,13 +62,15 @@ int numberGame() {
 
 int main() {
 
-  clock_t before = clock();
+  auto start = std::chrono::high_resolution_clock::now();
 
   numberGame();
 
-  clock_t duration = clock() - before;
+  auto stop = std::chrono::high_resolution_clock::now();
 
-  std::cout << "Duration: " << (float)duration / CLOCKS_PER_SEC << " seconds";
-
+  auto duration =
+      std::chrono::duration_cast<std::chrono::seconds>(stop - start);
+  std::cout << "\nIt has taken you " << duration.count()
+            << " seconds to guess what the secret number was!" << std::endl;
   return 0;
 }
