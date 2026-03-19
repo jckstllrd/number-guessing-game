@@ -15,5 +15,3 @@ When starting out, you are asked which level of difficulty you would like to set
 Once you select a level of difficulty, the game begins and after each subsequent guess you are told where you got it right, or whether the solution is higher or lower.
 
 If you manage to get the answer correct then the game will exit, telling you that you got the answer with N guesses remaining.
-
-https://github.com/jckstllrd/number-guessing-game
