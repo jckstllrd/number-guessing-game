@@ -1,6 +1,7 @@
 #include <chrono>
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
 #include <iostream>
 #include <random>
 #include <string>
@@ -72,5 +73,12 @@ int main() {
       std::chrono::duration_cast<std::chrono::seconds>(stop - start);
   std::cout << "\nIt has taken you " << duration.count()
             << " seconds to guess what the secret number was!" << std::endl;
+
+  std::ofstream MyFile("filename.txt");
+
+  MyFile << "Files can be tricky, but it is fun enough!";
+
+  MyFile.close();
+
   return 0;
 }
