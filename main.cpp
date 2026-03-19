@@ -1,18 +1,18 @@
 #include <cstdlib>
+#include <ctime>
 #include <iostream>
 #include <random>
 #include <string>
 
-void getResults(int secret, int guess, int guesses) {
+void getResults(int secret, int guess, int *pGuesses) {
   std::string relativeDiff =
       (guess == secret) ? "exact"
                         : ((guess < secret) ? "greater than" : "less than");
 
   if (relativeDiff == "exact") {
     std::cout << "Congratulations! You guessed the correct number with only "
-              << guesses << " attempts left.";
-    guesses = 0;
-    exit(0);
+              << *pGuesses << " attempts left.";
+    *pGuesses = 0;
   } else {
     std::cout << "Incorrect! The number is " << relativeDiff << " " << guess
               << "\n";
@@ -31,7 +31,7 @@ void startLevel(int level, int secret) {
     int guess;
     std::cout << "\nEnter your guess: ";
     std::cin >> guess;
-    getResults(secret, guess, guesses);
+    getResults(secret, guess, &guesses);
     guesses--;
   }
 }
@@ -61,6 +61,13 @@ int numberGame() {
 
 int main() {
 
+  clock_t before = clock();
+
   numberGame();
+
+  clock_t duration = clock() - before;
+
+  std::cout << "Duration: " << (float)duration / CLOCKS_PER_SEC << " seconds";
+
   return 0;
 }
