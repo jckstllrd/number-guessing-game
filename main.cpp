@@ -39,10 +39,14 @@ public:
               << "\nPlease select the difficulty level:\n"
               << "1. Easy(10 chances)\n"
               << "2. Medium(5 chances)\n"
-              << "3. Hard(3 chances)\n"
-              << "\nEnter your choice: ";
-    std::cin >> levelDifficulty;
-
+              << "3. Hard(3 chances)\n";
+    std::cout << "\nEnter your choice: ";
+    while (!(std::cin >> levelDifficulty) ||
+           !(levelDifficulty <= 3 && levelDifficulty >= 1)) {
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      std::cout << "\nEnter your choice: ";
+    }
     startLevel(levelDifficulty, secretNum);
   }
 
