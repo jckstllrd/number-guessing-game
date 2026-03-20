@@ -10,6 +10,21 @@ class GameController {
 
 public:
   int initialiseGame() {
+    int userChoice;
+
+    std::cout << "Welcome to the Number Guessing Game!\n\nPlease select one of "
+                 "the options below:\n1.Start Game\n2. Highscores\n3. "
+                 "Settings\n4. Exit\n";
+    std::cin >> userChoice;
+
+    if (userChoice == 1) {
+      startGame();
+    }
+
+    return 0;
+  }
+
+  void startGame() {
 
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -29,8 +44,6 @@ public:
     std::cin >> levelDifficulty;
 
     startLevel(levelDifficulty, secretNum);
-
-    return 0;
   }
 
   void getResults(int secret, int guess, int *pGuesses) {
