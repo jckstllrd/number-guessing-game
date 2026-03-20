@@ -23,14 +23,17 @@ public:
 
     return 0;
   }
-
-  void startGame() {
-
+  int getRandomNum() {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> distrib(1, 100);
-    int secretNum = distrib(gen);
-    std::cout << secretNum;
+
+    int randomNum = distrib(gen);
+    return randomNum;
+  }
+
+  void startGame() {
+    int secretNum = getRandomNum();
     int numOfGuesses;
     int levelDifficulty;
     std::cout << "Welcome to the Number Guessing Game!\n"
